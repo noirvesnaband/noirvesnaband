@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>НУАРВЕСНА — Metalcore из России</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Oswald:wght@300;400;500;600;700&display=swap');
+
+:root{--bg:#050506;--panel:#0b0b0e;--panel2:#101014;--line:#24242b;--text:#d8d8dc;--muted:#77777f;--white:#f3f3f4;--red:#821d32;--red2:#4b0e1b}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;background:var(--bg)}
+body{background:var(--bg);color:var(--text);font-family:Inter,sans-serif;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+button,input,textarea{font:inherit}
+button{cursor:pointer}
+nav{position:fixed;top:0;width:100%;height:70px;z-index:100;background:rgba(5,5,6,.82);backdrop-filter:blur(14px);border-bottom:1px solid #18181d;display:flex;align-items:center;justify-content:space-between;padding:0 6%}
+.logo,.wordmark,.section-title,.join-title,.member-name,.album-name{font-family:Oswald,sans-serif}
+.logo{font-size:1.45rem;font-weight:700;letter-spacing:.08em}.logo span,.join-title span{color:var(--red)}
+.nav{display:flex;gap:28px;list-style:none}.nav a{font-size:.68rem;letter-spacing:.14em;color:var(--muted);text-transform:uppercase}.nav a:hover{color:var(--white)}
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:100px 25px 70px;background:radial-gradient(ellipse at center,rgba(130,29,50,.13),transparent 55%)}
+.hero-sub{font-size:.68rem;letter-spacing:.3em;color:var(--muted);margin-bottom:25px}
+.wordmark{font-size:clamp(3.2rem,11vw,9rem);font-weight:700;line-height:.9;letter-spacing:.025em;white-space:nowrap;color:var(--white)}.wordmark span{color:var(--red)}
+.hero-slogan{max-width:750px;margin:30px auto 0;font-size:.8rem;letter-spacing:.13em;line-height:1.8;color:#909098;text-transform:uppercase}.hero-slogan strong{color:var(--white);font-weight:500}
+.buttons{display:flex;justify-content:center;gap:12px;margin-top:38px}.btn{display:inline-block;padding:14px 25px;border:1px solid #2b2b32;font-size:.67rem;letter-spacing:.14em;text-transform:uppercase;transition:.25s}.primary{background:var(--red);border-color:var(--red);color:#fff}.primary:hover{background:#681629}.outline:hover{border-color:var(--red)}
+section{padding:110px 7%}.dark{background:#08080a}.section-label{display:block;color:var(--red);font-size:.62rem;letter-spacing:.27em;text-transform:uppercase;margin-bottom:12px}.section-title{font-size:clamp(2.5rem,5vw,4.3rem);font-weight:500;text-transform:uppercase;color:var(--white);line-height:1}.divider{height:1px;width:60px;background:var(--red);margin-top:24px;margin-bottom:55px}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:65px;align-items:center}.about-img{min-height:470px;background:#0b0b0e center/cover no-repeat;border:1px solid #17171c;display:flex;align-items:center;justify-content:center}.about-symbol{font:700 8rem Oswald;color:#222229}.about p{color:#85858d;font-size:.88rem;line-height:1.85;margin-bottom:20px}.motto{border-left:2px solid var(--red);padding-left:18px;color:var(--white)!important;font:500 1.45rem Oswald!important;line-height:1.25!important;text-transform:uppercase}
+.members-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}.member{background:var(--panel);border:1px solid #18181d;cursor:pointer;transition:.3s;overflow:hidden}.member:hover{border-color:#54202d}.member-head{padding:24px;position:relative}.member-photo{height:230px;background:#111115 center/cover no-repeat;margin-bottom:22px}.member-name{font-size:1.35rem;color:var(--white);text-transform:uppercase}.member-role{font-size:.62rem;color:#65656d;letter-spacing:.14em;text-transform:uppercase;margin-top:5px}.plus{position:absolute;right:24px;top:24px;width:29px;height:29px;border:1px solid #303038;display:grid;place-items:center;color:#777;transition:.3s}.member.active .plus{transform:rotate(45deg);border-color:var(--red);color:var(--red)}.bio{max-height:0;opacity:0;overflow:hidden;padding:0 24px;color:#85858d;font-size:.82rem;line-height:1.8;transition:.45s}.member.active .bio{max-height:420px;opacity:1;padding:0 24px 28px;border-top:1px solid #18181d}.bio p{margin-top:18px}
+.join{text-align:center;background:radial-gradient(ellipse at center,rgba(130,29,50,.11),transparent 65%),#050506;border-top:1px solid #15151a;border-bottom:1px solid #15151a}.join-inner{max-width:850px;margin:auto}.join-title{font-size:clamp(3rem,7vw,6rem);line-height:.93;font-weight:600;color:var(--white)}.join-title span{display:block}.join p{max-width:650px;margin:28px auto;color:#85858d;line-height:1.8;font-size:.88rem}.join-manifest{font:500 clamp(1.5rem,3vw,2.2rem) Oswald!important;color:var(--white)!important;text-transform:uppercase;line-height:1.2!important;margin:45px auto 30px!important}
+.quote{text-align:center;background:#070708;padding:140px 8%}.quote-text{max-width:1000px;margin:auto;font:400 clamp(2rem,4vw,4rem) Oswald;line-height:1.15;color:#d0d0d4}.quote-author{margin-top:25px;color:var(--red);font-size:.62rem;letter-spacing:.25em}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.card{background:var(--panel);border:1px solid #18181d}.cover{aspect-ratio:1;background:#111115 center/cover no-repeat;display:grid;place-items:center}.symbol{font:700 5rem Oswald;color:#25252c}.card-info{padding:20px}.album-name{font-size:1.25rem;text-transform:uppercase}.meta{color:#62626a;font-size:.62rem;margin-top:5px}
+.tour-item{display:grid;grid-template-columns:90px 1fr 180px;gap:25px;padding:23px 0;border-bottom:1px solid #19191e}.date{font:400 1.2rem Oswald;color:var(--red)}.city{font:400 1.2rem Oswald;text-transform:uppercase}.venue{color:#66666e;font-size:.68rem;margin-top:4px}.status{text-align:right;color:#62626a;font-size:.6rem;text-transform:uppercase;letter-spacing:.1em}
+.video-box{height:430px;background:#0b0b0e;display:grid;place-items:center;border:1px solid #18181d}.play{width:70px;height:70px;border:1px solid var(--red);border-radius:50%;display:grid;place-items:center;color:var(--red)}
+.merch-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.merch-img{aspect-ratio:1;background:#111115 center/cover no-repeat;display:grid;place-items:center}
+.contact{text-align:center}.contact-inner{max-width:700px;margin:auto}.contact p{color:#85858d;line-height:1.8;font-size:.85rem;margin-bottom:28px}.newsletter{display:flex}.newsletter input{flex:1;background:#0d0d10;border:1px solid #29292f;padding:15px;color:#fff;outline:none}.newsletter button{background:var(--red);border:0;color:#fff;padding:15px 22px;letter-spacing:.1em;font-size:.65rem}.socials{display:flex;justify-content:center;gap:8px;margin-top:30px}.social{width:44px;height:44px;border:1px solid #29292f;display:grid;place-items:center;color:#777;font-size:.62rem}.social:hover{border-color:var(--red)}
+footer{padding:65px 7% 25px;background:#030304;border-top:1px solid #15151a}.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:50px;margin-bottom:50px}.footer-logo{font:700 2rem Oswald;letter-spacing:.08em}.footer-logo span{color:var(--red)}.footer-heading{font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;margin-bottom:14px}.footer-links{list-style:none}.footer-links li{margin:8px 0}.footer-links a{color:#606068;font-size:.68rem}.footer-links a:hover{color:var(--red)}.bottom{border-top:1px solid #15151a;padding-top:23px;display:flex;justify-content:space-between;color:#4f4f56;font-size:.6rem}
+
+.admin-open{position:fixed;right:18px;bottom:18px;z-index:1000;background:#0b0b0e;border:1px solid #29292f;color:#666;padding:8px 11px;font-size:10px;opacity:.45}.admin-open:hover{opacity:1;color:#fff;border-color:var(--red)}
+.modal{position:fixed;inset:0;z-index:5000;background:rgba(0,0,0,.82);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:20px}.modal.show{display:flex}.admin-box{width:min(950px,100%);max-height:90vh;overflow:auto;background:#09090b;border:1px solid #29292f;padding:30px}.admin-title{font:500 2rem Oswald;color:var(--white);margin-bottom:20px}.admin-tabs{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:22px}.tab{background:#111115;border:1px solid #29292f;color:#777;padding:9px 12px;font-size:10px}.tab.active{background:var(--red);border-color:var(--red);color:#fff}.panel{display:none}.panel.active{display:block}.field{margin-bottom:16px}.field label{display:block;color:#777;font-size:10px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:7px}.field input,.field textarea{width:100%;background:#050506;border:1px solid #29292f;color:#ddd;padding:11px;outline:none}.field textarea{min-height:100px;resize:vertical}.admin-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px}.small{padding:10px 14px;background:#121216;border:1px solid #303038;color:#aaa;font-size:10px}.save{background:var(--red);border-color:var(--red);color:#fff}.login{max-width:380px}.login h2{font:500 2rem Oswald;color:#fff;margin-bottom:20px}.error{color:#c34a62;font-size:11px;margin-top:8px}.admin-item{border:1px solid #1c1c22;padding:16px;margin-bottom:12px}.admin-item h3{font:400 1.2rem Oswald;margin-bottom:10px}.preview{width:90px;height:60px;object-fit:cover;background:#111;margin-bottom:8px}.danger{border-color:#63202e!important;color:#c34a62!important}
+.hidden{display:none!important}
+
+@media(max-width:800px){.nav{display:none}.about-grid,.members-grid,.cards{grid-template-columns:1fr}.merch-grid{grid-template-columns:1fr 1fr}.footer-grid{grid-template-columns:1fr 1fr}.tour-item{grid-template-columns:70px 1fr}.status{grid-column:1/-1;text-align:left}.wordmark{font-size:clamp(2.3rem,12vw,5rem)}}
+@media(max-width:520px){section{padding:80px 24px}.merch-grid,.footer-grid{grid-template-columns:1fr}.newsletter{flex-direction:column}.newsletter button{margin-top:5px}.hero-slogan{font-size:.68rem}.member-photo{height:190px}}
+</style>
+</head>
+
+<body>
+
+<nav>
+<a class="logo" href="#hero">НУАР<span>ВЕСНА</span></a>
+<ul class="nav">
+<li><a href="#about">О проекте</a></li>
+<li><a href="#members">Участники</a></li>
+<li><a href="#join">Стать частью</a></li>
+<li><a href="#music">Музыка</a></li>
+<li><a href="#tour">Концерты</a></li>
+<li><a href="#contact">Контакты</a></li>
+</ul>
+</nav>
+
+<section class="hero" id="hero">
+<div>
+<div class="hero-sub">MODERN METALCORE ИЗ РОССИИ</div>
+<h1 class="wordmark">НУАР<span>ВЕСНА</span></h1>
+<div class="hero-slogan"><strong>МЫ НЕ ПРЯЧЕМ СВОЮ ТЬМУ — МЫ ДЕЛАЕМ ИЗ НЕЁ МЕТАЛКОР.</strong></div>
+<div class="buttons">
+<a class="btn primary" href="#music">Слушать музыку</a>
+<a class="btn outline" href="#join">Стать частью</a>
+</div>
+</div>
+</section>
+
+<section id="about" class="dark">
+<span class="section-label">01 / О проекте</span>
+<h2 class="section-title">НУАРВЕСНА</h2><div class="divider"></div>
+<div class="about-grid">
+<div class="about-img" id="aboutImage"><div class="about-symbol">NV</div></div>
+<div class="about">
+<p>НУАРВЕСНА — российский metalcore-проект на пересечении тяжёлого звука, поэзии и самовыражения.</p>
+<p>«Нуар» — тьма. «Весна» — пробуждение. Вместе это путь из одного состояния в другое.</p>
+<p>Мы не романтизируем тьму и не делаем из неё культ. Мы используем творчество, чтобы пройти через неё.</p>
+<p class="motto">МЫ НЕ ПРЯЧЕМ СВОЮ ТЬМУ — МЫ ДЕЛАЕМ ИЗ НЕЁ МЕТАЛКОР.</p>
+</div>
+</div>
+</section>
+
+<section id="members">
+<span class="section-label">02 / Состав</span>
+<h2 class="section-title">Участники</h2><div class="divider"></div>
+<div class="members-grid" id="membersGrid"></div>
+</section>
+
+<section id="join" class="join">
+<div class="join-inner">
+<span class="section-label">03 / Открытый состав</span>
+<h2 class="join-title">СТАТЬ ЧАСТЬЮ<span>НУАРВЕСНЫ</span></h2>
+<div class="divider" style="margin-left:auto;margin-right:auto"></div>
+<p>НУАРВЕСНА ищет музыкантов из России, которым близки тяжёлый звук, свобода творчества и идея проекта.</p>
+<p>Гитара, бас, ударные, электронная музыка — если ты умеешь создавать звук и хочешь быть частью группы, мы хотим тебя услышать.</p>
+<div class="join-manifest">МЫ НЕ ИЩЕМ ИДЕАЛЬНЫХ.<br>МЫ ИЩЕМ ТЕХ, КОМУ ЕСТЬ ЧТО СКАЗАТЬ.</div>
+<a class="btn primary" id="joinEmail" href="mailto:YOUR_EMAIL@example.com">Стать частью НУАРВЕСНЫ</a>
+<p style="font-size:.62rem;color:#505058">Напиши о себе, своём опыте, инструменте и почему тебе близка НУАРВЕСНА.</p>
+</div>
+</section>
+
+<section class="quote">
+<div class="quote-text">«Мы не прячем свою тьму — мы делаем из неё металкор.»</div>
+<div class="quote-author">НУАРВЕСНА</div>
+</section>
+
+<section id="music" class="dark">
+<span class="section-label">04 / Музыка</span>
+<h2 class="section-title">Дискография</h2><div class="divider"></div>
+<div class="cards" id="musicGrid"></div>
+</section>
+
+<section id="tour">
+<span class="section-label">05 / Концерты</span>
+<h2 class="section-title">Выступления</h2><div class="divider"></div>
+<div class="tour-item"><div class="date">—</div><div><div class="city">Скоро</div><div class="venue">Информация о выступлениях появится здесь</div></div><div class="status">Следи за новостями</div></div>
+</section>
+
+<section class="dark">
+<span class="section-label">06 / Видео</span>
+<h2 class="section-title">Смотреть</h2><div class="divider"></div>
+<div class="video-box"><div class="play">▶</div></div>
+</section>
+
+<section>
+<span class="section-label">07 / Мерч</span>
+<h2 class="section-title">Носить НУАРВЕСНУ</h2><div class="divider"></div>
+<div class="merch-grid" id="merchGrid"></div>
+</section>
+
+<section id="contact" class="dark contact">
+<span class="section-label">08 / Связь</span>
+<h2 class="section-title">Быть рядом</h2><div class="divider" style="margin-left:auto;margin-right:auto"></div>
+<div class="contact-inner">
+<p>Новости НУАРВЕСНЫ, новая музыка, тексты, концерты и всё происходящее вокруг проекта.</p>
+<form class="newsletter" onsubmit="event.preventDefault();alert('Спасибо. Подписка сохранена для прототипа.');"><input type="email" placeholder="Твой email" required><button>Подписаться</button></form>
+<div class="socials"><a class="social" id="vkLink" href="#">VK</a><a class="social" id="tgLink" href="#">TG</a><a class="social" id="ytLink" href="#">YT</a></div>
+</div>
+</section>
+
+<footer>
+<div class="footer-grid">
+<div><div class="footer-logo">НУАР<span>ВЕСНА</span></div><p style="margin-top:18px;color:#55555d;font-size:.72rem;line-height:1.7;max-width:400px">Российский metalcore-проект. Путь из тьмы к свету через музыку, слово и самовыражение.</p></div>
+<div><div class="footer-heading">Навигация</div><ul class="footer-links"><li><a href="#about">О проекте</a></li><li><a href="#members">Участники</a></li><li><a href="#join">Стать частью</a></li><li><a href="#music">Музыка</a></li></ul></div>
+<div><div class="footer-heading">Музыка</div><ul class="footer-links"><li><a href="#" id="ymLink">Яндекс Музыка</a></li><li><a href="#" id="vkMusicLink">VK Музыка</a></li><li><a href="#" id="ytMusicLink">YouTube</a></li><li><a href="#" id="tgMusicLink">Telegram</a></li></ul></div>
+</div>
+<div class="bottom"><span>© 2026 НУАРВЕСНА</span><span>РОССИЯ</span></div>
+</footer>
+
+<button class="admin-open" onclick="openAdmin()">ADMIN</button>
+
+<div class="modal" id="adminModal">
+<div class="admin-box">
+<div id="loginPanel" class="login">
+<h2>НУАРВЕСНА / ADMIN</h2>
+<div class="field"><label>Логин</label><input id="login" autocomplete="username"></div>
+<div class="field"><label>Пароль</label><input id="password" type="password" autocomplete="current-password"></div>
+<div class="admin-actions"><button class="small save" onclick="loginAdmin()">Войти</button><button class="small" onclick="closeAdmin()">Закрыть</button></div>
+<div id="loginError" class="error"></div>
+</div>
+
+<div id="adminPanel" class="hidden">
+<div style="display:flex;justify-content:space-between;gap:15px;align-items:center"><div class="admin-title">Панель управления</div><button class="small" onclick="logout()">Выйти</button></div>
+<div class="admin-tabs">
+<button class="tab active" onclick="tab('content',this)">Контент</button>
+<button class="tab" onclick="tab('members',this)">Участники</button>
+<button class="tab" onclick="tab('music',this)">Музыка</button>
+<button class="tab" onclick="tab('merch',this)">Мерч</button>
+<button class="tab" onclick="tab('settings',this)">Ссылки</button>
+</div>
+
+<div id="panel-content" class="panel active">
+<div class="field"><label>Главное изображение — URL или data:image</label><input id="aAboutImage" placeholder="https://..."></div>
+<div class="field"><label>Лозунг</label><input id="aSlogan"></div>
+<div class="field"><label>Текст «О проекте»</label><textarea id="aAboutText"></textarea></div>
+<div class="field"><label>Цитата</label><input id="aQuote"></div>
+<button class="small save" onclick="saveContent()">Сохранить контент</button>
+</div>
+
+<div id="panel-members" class="panel">
+<div id="memberAdmin"></div>
+<button class="small" onclick="addMember()">+ Добавить участника</button>
+<button class="small save" onclick="saveMembers()">Сохранить участников</button>
+</div>
+
+<div id="panel-music" class="panel">
+<div id="musicAdmin"></div>
+<button class="small" onclick="addMusic()">+ Добавить релиз</button>
+<button class="small save" onclick="saveMusic()">Сохранить музыку</button>
+</div>
+
+<div id="panel-merch" class="panel">
+<div id="merchAdmin"></div>
+<button class="small" onclick="addMerch()">+ Добавить товар</button>
+<button class="small save" onclick="saveMerch()">Сохранить мерч</button>
+</div>
+
+<div id="panel-settings" class="panel">
+<div class="field"><label>Email для музыкантов</label><input id="aEmail"></div>
+<div class="field"><label>VK</label><input id="aVk"></div>
+<div class="field"><label>Telegram</label><input id="aTg"></div>
+<div class="field"><label>YouTube</label><input id="aYt"></div>
+<div class="field"><label>Яндекс Музыка</label><input id="aYm"></div>
+<div class="field"><label>VK Музыка</label><input id="aVkMusic"></div>
+<button class="small save" onclick="saveSettings()">Сохранить ссылки</button>
+</div>
+</div>
+</div>
+</div>
+
+<script>
+const ADMIN_LOGIN="admin";
+const ADMIN_PASSWORD="Nuarvesna2026!";
+
+const defaultData={
+content:{
+aboutImage:"",
+slogan:"МЫ НЕ ПРЯЧЕМ СВОЮ ТЬМУ — МЫ ДЕЛАЕМ ИЗ НЕЁ МЕТАЛКОР.",
+aboutText:"НУАРВЕСНА — российский metalcore-проект на пересечении тяжёлого звука, поэзии и самовыражения.",
+quote:"«Мы не прячем свою тьму — мы делаем из неё металкор.»"
+},
+members:[
+{name:"Юрий Мейкер",role:"Вокал / тексты",photo:"",bio:"Фронтмен НУАРВЕСНЫ. Автор текстов, песен и философии проекта. Через вокал, музыку и поэзию тьма превращается в творчество."},
+{name:"Гитарист",role:"Гитара",photo:"",bio:"История участника, музыкальный опыт и вклад в звучание НУАРВЕСНЫ."},
+{name:"Басист",role:"Бас",photo:"",bio:"История участника, музыкальный опыт и роль баса в общем звучании проекта."},
+{name:"Барабанщик",role:"Ударные",photo:"",bio:"История участника, музыкальный опыт и стиль игры."}
+],
+music:[
+{title:"Новый релиз",meta:"НУАРВЕСНА / СКОРО",cover:""},
+{title:"Новый релиз",meta:"НУАРВЕСНА / СКОРО",cover:""},
+{title:"Новый релиз",meta:"НУАРВЕСНА / СКОРО",cover:""}
+],
+merch:[
+{title:"Футболка",price:"Скоро",image:""},
+{title:"Худи",price:"Скоро",image:""},
+{title:"CD",price:"Скоро",image:""},
+{title:"Атрибутика",price:"Скоро",image:""}
+],
+settings:{email:"YOUR_EMAIL@example.com",vk:"#",tg:"#",yt:"#",ym:"#",vkMusic:"#"}
+};
+
+let data=JSON.parse(localStorage.getItem("nuarvesnaData")||"null")||defaultData;
+
+function save(){localStorage.setItem("nuarvesnaData",JSON.stringify(data))}
+function safe(s){return String(s??"").replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"}[m]))}
+
+function render(){
+document.querySelector(".hero-slogan strong").textContent=data.content.slogan;
+document.querySelector(".motto").textContent=data.content.slogan;
+document.querySelector(".quote-text").textContent=data.content.quote;
+if(data.content.aboutImage)document.getElementById("aboutImage").style.backgroundImage=`url("${data.content.aboutImage}")`;
+renderMembers();renderMusic();renderMerch();
+document.getElementById("joinEmail").href="mailto:"+data.settings.email;
+document.getElementById("vkLink").href=data.settings.vk;
+document.getElementById("tgLink").href=data.settings.tg;
+document.getElementById("ytLink").href=data.settings.yt;
+document.getElementById("ymLink").href=data.settings.ym;
+document.getElementById("vkMusicLink").href=data.settings.vkMusic;
+document.getElementById("ytMusicLink").href=data.settings.yt;
+document.getElementById("tgMusicLink").href=data.settings.tg;
+}
+
+function renderMembers(){
+const g=document.getElementById("membersGrid");g.innerHTML="";
+data.members.forEach((m,i)=>{
+const el=document.createElement("div");el.className="member";
+el.innerHTML=`<div class="member-head"><div class="member-photo" ${m.photo?`style="background-image:url('${safe(m.photo)}')"`:""}></div><div class="member-name">${safe(m.name)}</div><div class="member-role">${safe(m.role)}</div><div class="plus">+</div></div><div class="bio"><p>${safe(m.bio)}</p></div>`;
+el.onclick=()=>el.classList.toggle("active");g.appendChild(el);
+});
+}
+
+function renderMusic(){
+const g=document.getElementById("musicGrid");g.innerHTML="";
+data.music.forEach(m=>{g.innerHTML+=`<div class="card"><div class="cover" ${m.cover?`style="background-image:url('${safe(m.cover)}')"`:""}>${m.cover?"":"<div class='symbol'>NV</div>"}</div><div class="card-info"><div class="album-name">${safe(m.title)}</div><div class="meta">${safe(m.meta)}</div></div></div>`});
+}
+
+function renderMerch(){
+const g=document.getElementById("merchGrid");g.innerHTML="";
+data.merch.forEach(m=>{g.innerHTML+=`<div class="card"><div class="merch-img" ${m.image?`style="background-image:url('${safe(m.image)}')"`:""}>${m.image?"":"<div class='symbol'>NV</div>"}</div><div class="card-info"><div class="album-name">${safe(m.title)}</div><div class="meta">${safe(m.price)}</div></div></div>`});
+}
+
+function openAdmin(){document.getElementById("adminModal").classList.add("show");if(sessionStorage.getItem("nuarvesnaAdmin")==="1")showAdmin();else showLogin()}
+function closeAdmin(){document.getElementById("adminModal").classList.remove("show")}
+function showLogin(){document.getElementById("loginPanel").classList.remove("hidden");document.getElementById("adminPanel").classList.add("hidden")}
+function showAdmin(){document.getElementById("loginPanel").classList.add("hidden");document.getElementById("adminPanel").classList.remove("hidden");fillAdmin()}
+function loginAdmin(){
+if(document.getElementById("login").value===ADMIN_LOGIN&&document.getElementById("password").value===ADMIN_PASSWORD){sessionStorage.setItem("nuarvesnaAdmin","1");showAdmin()}else document.getElementById("loginError").textContent="Неверный логин или пароль."
+}
+function logout(){sessionStorage.removeItem("nuarvesnaAdmin");showLogin()}
+function tab(name,btn){document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));document.querySelectorAll(".panel").forEach(x=>x.classList.remove("active"));btn.classList.add("active");document.getElementById("panel-"+name).classList.add("active")}
+
+function fillAdmin(){
+aAboutImage.value=data.content.aboutImage;aSlogan.value=data.content.slogan;aAboutText.value=data.content.aboutText;aQuote.value=data.content.quote;
+aEmail.value=data.settings.email;aVk.value=data.settings.vk;aTg.value=data.settings.tg;aYt.value=data.settings.yt;aYm.value=data.settings.ym;aVkMusic.value=data.settings.vkMusic;
+renderMemberAdmin();renderMusicAdmin();renderMerchAdmin();
+}
+function saveContent(){data.content.aboutImage=aAboutImage.value;data.content.slogan=aSlogan.value;data.content.aboutText=aAboutText.value;data.content.quote=aQuote.value;save();render();alert("Контент сохранён.")}
+function saveSettings(){data.settings={email:aEmail.value,vk:aVk.value,tg:aTg.value,yt:aYt.value,ym:aYm.value,vkMusic:aVkMusic.value};save();render();alert("Ссылки сохранены.")}
+
+function renderMemberAdmin(){
+memberAdmin.innerHTML=data.members.map((m,i)=>`<div class="admin-item"><h3>Участник ${i+1}</h3><div class="field"><label>Имя</label><input data-mi="${i}" data-k="name" value="${safe(m.name)}"></div><div class="field"><label>Роль</label><input data-mi="${i}" data-k="role" value="${safe(m.role)}"></div><div class="field"><label>Фото — URL или data:image</label><input data-mi="${i}" data-k="photo" value="${safe(m.photo)}"></div><div class="field"><label>Биография</label><textarea data-mi="${i}" data-k="bio">${safe(m.bio)}</textarea></div><button class="small danger" onclick="data.members.splice(${i},1);renderMemberAdmin()">Удалить</button></div>`).join("");
+}
+function saveMembers(){document.querySelectorAll("[data-mi]").forEach(x=>data.members[+x.dataset.mi][x.dataset.k]=x.value);save();render();alert("Участники сохранены.")}
+function addMember(){data.members.push({name:"Новый участник",role:"Инструмент",photo:"",bio:"Биография участника."});renderMemberAdmin()}
+
+function renderMusicAdmin(){
+musicAdmin.innerHTML=data.music.map((m,i)=>`<div class="admin-item"><h3>Релиз ${i+1}</h3><div class="field"><label>Название</label><input data-musi="${i}" data-k="title" value="${safe(m.title)}"></div><div class="field"><label>Описание</label><input data-musi="${i}" data-k="meta" value="${safe(m.meta)}"></div><div class="field"><label>Обложка — URL или data:image</label><input data-musi="${i}" data-k="cover" value="${safe(m.cover)}"></div><button class="small danger" onclick="data.music.splice(${i},1);renderMusicAdmin()">Удалить</button></div>`).join("");
+}
+function saveMusic(){document.querySelectorAll("[data-musi]").forEach(x=>data.music[+x.dataset.musi][x.dataset.k]=x.value);save();render();alert("Музыка сохранена.")}
+function addMusic(){data.music.push({title:"Новый релиз",meta:"НУАРВЕСНА / СКОРО",cover:""});renderMusicAdmin()}
+
+function renderMerchAdmin(){
+merchAdmin.innerHTML=data.merch.map((m,i)=>`<div class="admin-item"><h3>Товар ${i+1}</h3><div class="field"><label>Название</label><input data-merchi="${i}" data-k="title" value="${safe(m.title)}"></div><div class="field"><label>Цена</label><input data-merchi="${i}" data-k="price" value="${safe(m.price)}"></div><div class="field"><label>Изображение — URL или data:image</label><input data-merchi="${i}" data-k="image" value="${safe(m.image)}"></div><button class="small danger" onclick="data.merch.splice(${i},1);renderMerchAdmin()">Удалить</button></div>`).join("");
+}
+function saveMerch(){document.querySelectorAll("[data-merchi]").forEach(x=>data.merch[+x.dataset.merchi][x.dataset.k]=x.value);save();render();alert("Мерч сохранён.")}
+function addMerch(){data.merch.push({title:"Новый товар",price:"Скоро",image:""});renderMerchAdmin()}
+
+render();
+</script>
+<!-- Фоновое аудио для НУАРВЕСНА -->
+<audio id="bg-music" src="MUSIC.mp3" loop></audio>
+
+<script>
+  (function() {
+    const audio = document.getElementById('bg-music');
+    let hasPlayed = false;
+
+    // Плавное нарастание громкости (fade-in) до 30% (0.3)
+    function fadeIn(audioTrack) {
+      audioTrack.volume = 0;
+      audioTrack.play().then(() => {
+        let vol = 0;
+        const interval = setInterval(() => {
+          if (vol < 0.25) { // Шагаем к 0.3
+            vol += 0.05;
+            audioTrack.volume = vol;
+          } else {
+            audioTrack.volume = 0.3; // Фиксируем громкость на 30%
+            clearInterval(interval);
+          }
+        }, 200);
+      }).catch(err => console.log("Автозапуск заблокирован браузером. Нужен клик.", err));
+    }
+
+    // Запуск по любому первому действию на сайте
+    function startMusic() {
+      if (hasPlayed) return;
+      hasPlayed = true;
+      fadeIn(audio);
+      
+      // Удаляем слушатели, чтобы не срабатывали повторно
+      window.removeEventListener('click', startMusic);
+      window.removeEventListener('scroll', startMusic);
+      window.removeEventListener('keydown', startMusic);
+    }
+
+    window.addEventListener('click', startMusic);
+    window.addEventListener('scroll', startMusic, { passive: true });
+    window.addEventListener('keydown', startMusic);
+
+    // Пауза, если пользователь переключил вкладку в браузере
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        audio.pause();
+      } else if (hasPlayed) {
+        audio.play().catch(err => console.log(err));
+      }
+    });
+  })();
+</script>
+</body>
+</html>
