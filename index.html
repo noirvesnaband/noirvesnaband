@@ -111,6 +111,9 @@ footer{padding:65px 7% 25px;background:#030304;border-top:1px solid #15151a}.foo
 <section id="music" class="dark">
 <span class="section-label">04 / Музыка</span>
 <h2 class="section-title">Дискография</h2><div class="divider"></div>
+<div style="display:flex;justify-content:center;margin-bottom:40px;">
+<iframe frameborder="0" allow="clipboard-write" style="border:none;width:100%;max-width:614px;height:244px;" width="614" height="244" src="https://music.yandex.ru/iframe/album/42095689/track/151404331"></iframe>
+</div>
 <div class="cards" id="musicGrid"></div>
 </section>
 
@@ -258,7 +261,7 @@ document.getElementById("joinEmail").href="mailto:"+data.settings.email;
 document.getElementById("vkLink").href=data.settings.vk;
 document.getElementById("tgLink").href=data.settings.tg;
 document.getElementById("ytLink").href=data.settings.yt;
-document.getElementById("ymLink").href=data.settings.ym;
+document.getElementById("ymLink").href=data.settings.ym || "https://music.yandex.ru/artist/25242802";
 document.getElementById("vkMusicLink").href=data.settings.vkMusic;
 document.getElementById("ytMusicLink").href=data.settings.yt;
 document.getElementById("tgMusicLink").href=data.settings.tg;
