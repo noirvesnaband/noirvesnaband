@@ -39,12 +39,33 @@ footer{padding:65px 7% 25px;background:#030304;border-top:1px solid #15151a}.foo
 .modal{position:fixed;inset:0;z-index:5000;background:rgba(0,0,0,.82);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;padding:20px}.modal.show{display:flex}.admin-box{width:min(950px,100%);max-height:90vh;overflow:auto;background:#09090b;border:1px solid #29292f;padding:30px}.admin-title{font:500 2rem Oswald;color:var(--white);margin-bottom:20px}.admin-tabs{display:flex;gap:7px;flex-wrap:wrap;margin-bottom:22px}.tab{background:#111115;border:1px solid #29292f;color:#777;padding:9px 12px;font-size:10px}.tab.active{background:var(--red);border-color:var(--red);color:#fff}.panel{display:none}.panel.active{display:block}.field{margin-bottom:16px}.field label{display:block;color:#777;font-size:10px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:7px}.field input,.field textarea{width:100%;background:#050506;border:1px solid #29292f;color:#ddd;padding:11px;outline:none}.field textarea{min-height:100px;resize:vertical}.admin-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:20px}.small{padding:10px 14px;background:#121216;border:1px solid #303038;color:#aaa;font-size:10px}.save{background:var(--red);border-color:var(--red);color:#fff}.login{max-width:380px}.login h2{font:500 2rem Oswald;color:#fff;margin-bottom:20px}.error{color:#c34a62;font-size:11px;margin-top:8px}.admin-item{border:1px solid #1c1c22;padding:16px;margin-bottom:12px}.admin-item h3{font:400 1.2rem Oswald;margin-bottom:10px}.preview{width:90px;height:60px;object-fit:cover;background:#111;margin-bottom:8px}.danger{border-color:#63202e!important;color:#c34a62!important}
 .hidden{display:none!important}
 
+/* Loading screen animation */
+#loadingScreen{position:fixed;inset:0;z-index:9999;background:var(--bg);display:flex;align-items:center;justify-content:center;transition:opacity .8s ease,visibility .8s ease}
+#loadingScreen.hidden{opacity:0;visibility:hidden}
+.loading-content{text-align:center}.loading-title{font:700 clamp(2.5rem,8vw,6rem) Oswald;letter-spacing:.05em;color:var(--white);animation:pulse 1.8s ease-in-out infinite}
+.loading-title span{color:var(--red)}
+.loading-bar{width:200px;height:2px;background:#1a1a1f;margin:25px auto 0;overflow:hidden;border-radius:2px}
+.loading-progress{height:100%;background:var(--red);width:0;animation:loadProgress 2s ease-in-out forwards}
+@keyframes pulse{0%,100%{opacity:.4;transform:scale(.98)}50%{opacity:1;transform:scale(1.03)}}
+@keyframes loadProgress{0%{width:0}60%{width:70%}100%{width:100%}}
+
+/* Music toggle button */
+.music-toggle{position:fixed;top:85px;right:20px;z-index:1001;background:#0b0b0e;border:1px solid #29292f;color:#777;padding:10px 14px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;transition:.25s;display:flex;align-items:center;gap:8px}.music-toggle:hover{border-color:var(--red);color:var(--red)}.music-toggle.active{background:var(--red);border-color:var(--red);color:#fff}.music-icon{width:14px;height:14px}
+
 @media(max-width:800px){.nav{display:none}.about-grid,.members-grid,.cards{grid-template-columns:1fr}.merch-grid{grid-template-columns:1fr 1fr}.footer-grid{grid-template-columns:1fr 1fr}.tour-item{grid-template-columns:70px 1fr}.status{grid-column:1/-1;text-align:left}.wordmark{font-size:clamp(2.3rem,12vw,5rem)}}
 @media(max-width:520px){section{padding:80px 24px}.merch-grid,.footer-grid{grid-template-columns:1fr}.newsletter{flex-direction:column}.newsletter button{margin-top:5px}.hero-slogan{font-size:.68rem}.member-photo{height:190px}}
 </style>
 </head>
 
 <body>
+
+<!-- Loading Screen -->
+<div id="loadingScreen">
+<div class="loading-content">
+<div class="loading-title">НУАР<span>ВЕСНА</span></div>
+<div class="loading-bar"><div class="loading-progress"></div></div>
+</div>
+</div>
 
 <nav>
 <a class="logo" href="#hero">НУАР<span>ВЕСНА</span></a>
@@ -56,6 +77,10 @@ footer{padding:65px 7% 25px;background:#030304;border-top:1px solid #15151a}.foo
 <li><a href="#tour">Концерты</a></li>
 <li><a href="#contact">Контакты</a></li>
 </ul>
+<button id="musicToggle" class="music-toggle" aria-label="Включить/выключить музыку">
+<svg class="music-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
+<span>Музыка</span>
+</button>
 </nav>
 
 <section class="hero" id="hero">
@@ -330,7 +355,9 @@ render();
 <script>
   (function() {
     const audio = document.getElementById('bg-music');
-    let hasPlayed = false;
+    const toggleBtn = document.getElementById('musicToggle');
+    let isPlaying = false;
+    let userInteracted = false;
 
     // Плавное нарастание громкости (fade-in) до 30% (0.3)
     function fadeIn(audioTrack) {
@@ -338,27 +365,64 @@ render();
       audioTrack.play().then(() => {
         let vol = 0;
         const interval = setInterval(() => {
-          if (vol < 0.25) { // Шагаем к 0.3
+          if (vol < 0.25) {
             vol += 0.05;
             audioTrack.volume = vol;
           } else {
-            audioTrack.volume = 0.3; // Фиксируем громкость на 30%
+            audioTrack.volume = 0.3;
             clearInterval(interval);
           }
         }, 200);
-      }).catch(err => console.log("Автозапуск заблокирован браузером. Нужен клик.", err));
+      }).catch(err => console.log("Автозапуск заблокирован браузером.", err));
     }
 
-    // Запуск по любому первому действию на сайте
+    // Функция включения музыки
+    function playMusic() {
+      if (!isPlaying) {
+        isPlaying = true;
+        fadeIn(audio);
+        if (toggleBtn) toggleBtn.classList.add('active');
+      }
+    }
+
+    // Функция выключения музыки
+    function stopMusic() {
+      if (isPlaying) {
+        isPlaying = false;
+        audio.pause();
+        if (toggleBtn) toggleBtn.classList.remove('active');
+      }
+    }
+
+    // Переключатель музыки
+    function toggleMusic() {
+      userInteracted = true;
+      if (isPlaying) {
+        stopMusic();
+      } else {
+        playMusic();
+      }
+    }
+
+    // Запуск по любому первому действию на сайте (если пользователь ещё не нажал кнопку)
     function startMusic() {
-      if (hasPlayed) return;
-      hasPlayed = true;
+      if (userInteracted || isPlaying) return;
+      userInteracted = true;
+      isPlaying = true;
       fadeIn(audio);
+      if (toggleBtn) toggleBtn.classList.add('active');
       
-      // Удаляем слушатели, чтобы не срабатывали повторно
       window.removeEventListener('click', startMusic);
       window.removeEventListener('scroll', startMusic);
       window.removeEventListener('keydown', startMusic);
+    }
+
+    // Добавляем обработчик на кнопку переключения
+    if (toggleBtn) {
+      toggleBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleMusic();
+      });
     }
 
     window.addEventListener('click', startMusic);
@@ -367,11 +431,19 @@ render();
 
     // Пауза, если пользователь переключил вкладку в браузере
     document.addEventListener('visibilitychange', () => {
-      if (document.hidden) {
+      if (document.hidden && isPlaying) {
         audio.pause();
-      } else if (hasPlayed) {
+      } else if (!document.hidden && isPlaying) {
         audio.play().catch(err => console.log(err));
       }
+    });
+
+    // Loading screen animation - hide after page load
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        const loadingScreen = document.getElementById('loadingScreen');
+        loadingScreen.classList.add('hidden');
+      }, 2500);
     });
   })();
 </script>
